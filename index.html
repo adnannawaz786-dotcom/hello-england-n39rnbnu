@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A warm greeting to England - Hello England static webpage">
+    <title>Hello England</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background elements for visual effects -->
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Main content container -->
+    <main class="container">
+        <!-- Header section -->
+        <header class="header">
+            <div class="flag-icon">
+                <div class="flag">
+                    <div class="flag-stripe red"></div>
+                    <div class="flag-stripe white"></div>
+                    <div class="flag-stripe red"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main greeting section -->
+        <section class="greeting-section">
+            <div class="greeting-card">
+                <h1 class="main-greeting">
+                    <span class="greeting-text">Hello</span>
+                    <span class="country-name">England</span>
+                </h1>
+                
+                <p class="subtitle">
+                    A warm greeting from across the digital divide
+                </p>
+
+                <!-- Decorative elements -->
+                <div class="decorative-line"></div>
+                
+                <div class="additional-content">
+                    <p class="description">
+                        Welcome to this simple tribute to the land of tea, tradition, and timeless charm.
+                    </p>
+                </div>
+
+                <!-- Interactive button -->
+                <button class="cta-button" onclick="showMessage()" aria-label="Show special message">
+                    <span class="button-text">Discover More</span>
+                    <span class="button-icon">→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Hidden message that appears on interaction -->
+        <section class="hidden-message" id="hiddenMessage" role="region" aria-live="polite">
+            <div class="message-card">
+                <h2>Cheerio!</h2>
+                <p>From the rolling hills of the countryside to the bustling streets of London, England's rich heritage and cultural legacy continue to inspire the world.</p>
+                <button class="close-button" onclick="hideMessage()" aria-label="Close message">×</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Hello England. Made with ❤️</p>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Show hidden message with animation
+        function showMessage() {
+            const messageElement = document.getElementById('hiddenMessage');
+            messageElement.classList.add('visible');
+            messageElement.focus();
+        }
+
+        // Hide message
+        function hideMessage() {
+            const messageElement = document.getElementById('hiddenMessage');
+            messageElement.classList.remove('visible');
+        }
+
+        // Add keyboard support for accessibility
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                hideMessage();
+            }
+        });
+
+        // Add loading animation on page load
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Add smooth scroll behavior for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll (if page becomes longer)
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.greeting-card, .footer').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
